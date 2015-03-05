@@ -1,2 +1,8 @@
-<h1>Pastries#edit</h1>
-<p>Find me in app/views/pastries/edit.html.erb</p>
+<h1>Editing <%= @pastry.name %></h1>
+<%= simple_form_for @pastry do |f| %>
+  <%= f.input :name %>
+  <%= f.input :price_in_pence %>
+  <%= f.input :description %>
+
+  <%= f.button :submit, "Edit pastry!" %>
+<% end %>

@@ -1,2 +1,8 @@
-<h1>Pastries#new</h1>
-<p>Find me in app/views/pastries/new.html.erb</p>
+<h1>Upload new pastry</h1>
+<%= simple_form_for @pastry do |f| %>
+  <%= f.input :name %>
+  <%= f.input :price_in_pence %>
+  <%= f.input :description %>
+
+  <%= f.button :submit, "Make new pastry!" %>
+<% end %>
