@@ -1,5 +1,10 @@
 <h1>Get your pastries here!</h1>
 
-<% @pastries.each do |pastry| %>
-  <p><%= pastry[:name] %> &pound;<%= pastry[:price_in_pence] %></p>
-<% end %>
+<section class="pastries">
+  <% @pastries.each do |pastry| %>
+    <div class="pastry">
+      <p><%= pastry[:name] %> - &pound;<%= pastry[:price_in_pence] %></p>
+      <p><%= pastry[:description] %></p>
+    </div>
+  <% end %>
+</section>
