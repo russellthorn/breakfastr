@@ -1,2 +1,5 @@
-<h1>Pastries#index</h1>
-<p>Find me in app/views/pastries/index.html.erb</p>
+<h1>Get your pastries here!</h1>
+
+<% @pastries.each do |pastry| %>
+  <p><%= pastry[:name] %> &pound;<%= pastry[:price_in_pence] %></p>
+<% end %>
