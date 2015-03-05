@@ -1,2 +1,9 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<h1>Sign up for pastries</h1>
+<%= simple_form_for @user do |f| %>
+  <%= f.input :username %>
+  <%= f.input :email %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+
+  <%= f.button :submit, "Create user" %>
+<% end %>
