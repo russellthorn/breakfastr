@@ -3,8 +3,7 @@
 <section class="pastries">
   <% @pastries.each do |pastry| %>
     <div class="pastry">
-      <p><%= pastry[:name] %> - &pound; <%= pastry[:price_in_pence] %></p>
-      <p><%= pastry[:description] %></p>
+      <p><%= link_to pastry[:name], pastry_path(pastry) %> - &pound; <%= pastry[:price_in_pence] %></p>
     </div>
   <% end %>
 </section>
