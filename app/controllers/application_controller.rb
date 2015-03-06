@@ -19,4 +19,11 @@ class ApplicationController < ActionController::Base
       redirect_to new_session_path
     end
   end
+
+  def require_owner
+    unless current_user.owns(@pastry)
+      flash[:error] = "booyaa! only the baker can edit"
+      redirect_to root_path
+    end
+  end
 end

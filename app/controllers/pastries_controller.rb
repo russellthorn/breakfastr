@@ -1,11 +1,13 @@
 class PastriesController < ApplicationController
   before_action :require_user, except: [:index, :show]
+  before_action :find_pastry, only: [:show, :edit, :update]
+  before_action :require_owner, only: [:edit, :update, :destroy]
   def index
     @pastries = Pastry.all
   end
 
   def show
-    @pastry = Pastry.find(params[:id])
+    # @pastry = Pastry.find(params[:id])
   end
 
   def new
@@ -25,17 +27,18 @@ class PastriesController < ApplicationController
       flash[:success] = "New pastry added"
       redirect_to root_path
     else
-      flash[:error] = "some will go hungry, try again"
+      flash[:error] = "someone will go hungry, try again"
       render :new
     end
   end
 
   def edit
-    @pastry = Pastry.find(params[:id])  
+    # @pastry = Pastry.find(params[:id])
+    require_owner
   end
 
   def update
-    @pastry = Pastry.find(params[:id])
+    # @pastry = Pastry.find(params[:id])
     if @pastry.update(pastry_params)
       flash[:success] = "Pastry updated"
       redirect_to pastry_path(@pastry)
@@ -54,6 +57,10 @@ class PastriesController < ApplicationController
 
   private
   def pastry_params
-    params.require(:pastry).permit(:name, :price_in_pence, :description)
+    params.require(:pastry).permit(:name, :price_in_pence, :description, :image)
+  end
+
+  def find_pastry
+    @pastry = Pastry.find(params[:id])
   end
 end

@@ -54,5 +54,6 @@ end
 gem 'simple_form'
 gem 'paperclip'
 gem 'stripe'
+gem 'steer', github: 'tmcdb/steer-rb'
 
 
