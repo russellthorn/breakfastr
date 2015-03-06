@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
       Stripe::Charge.create(
         :amount => @pastry.price_in_pence,
         :currency => "gbp",
-        :source => "@order.stripe_token", # obtained with Stripe.js
+        :source => @order.stripe_token, # obtained with Stripe.js
         :description => "Charge for #{@order.user.email}."
       )
     else
