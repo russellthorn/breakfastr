@@ -1,5 +1,20 @@
+<section class="pastry">
 <h1><%= @pastry.name %></h1>
 
-<p>Price - &pound;<%= @pastry.price_in_pence %></p>
+<p>
+  Price - 
+  <%= link_to new_pastry_order_path(@pastry) do %>
+    <%= number_to_currency(@pastry.price_in_pence.to_f / 100, unit: "£") %>
+  <% end %>
+</p>
 <p><%= @pastry.description %></p>
-<p><%= link_to "Destroy this!", pastry_path(@pastry), method: :delete %></p>
+
+<% if logged_in? %>
+  <div class="actions">
+    <p><%= link_to "Edit", edit_pastry_path(@pastry) %>
+      <%= link_to "Destroy this!", pastry_path(@pastry), method: :delete %></p>  
+  </div>
+<% end %>
+
+<p>Baked by <%= @pastry.user.username %></p>
+</section>

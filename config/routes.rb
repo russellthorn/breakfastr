@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   root "pastries#index"
-  resources :pastries, only: [:index, :show]
+  resources :pastries do
+    resources :orders, only: [:new, :create, :show]
+  end
   resources :users, except: [:show, :index] do
-    resources :pastries, except: [:index, :show]
+    resources :pastries, only: [:index]
   end
 
+  resources :orders, only: :show
   resource :session
 end

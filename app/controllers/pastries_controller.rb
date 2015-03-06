@@ -9,11 +9,17 @@ class PastriesController < ApplicationController
   end
 
   def new
+    if params[:user_id].present?
+      @user = User.find(params[:user_id])
+      @pastries = @user.pastries
+    else
+      @pastries = Pastry.all
+    end
     @pastry = Pastry.new
   end
 
   def create
-    @pastry = Pastry.new(pastry_params)
+    @pastry = current_user.pastries.new(pastry_params)
     @pastry.save
     if @pastry.save
       flash[:success] = "New pastry added"
